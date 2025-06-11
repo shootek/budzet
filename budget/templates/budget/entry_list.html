@@ -1,0 +1,30 @@
+
+{% block content %}
+<h1>Lista wpisów</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Typ</th>
+            <th>Kategoria</th>
+            <th>Kwota</th>
+            <th>Opis</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in entries %}
+        <tr>
+            <td>{{ entry.date }}</td>
+            <td class="entry-{{ entry.type }}">{{ entry.get_type_display }}</td>
+            <td>{{ entry.category.name }}</td>
+            <td>{{ entry.amount }} zł</td>
+            <td>{{ entry.description }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5">Brak danych.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{% url 'entry_create' %}"><button>Dodaj nowy wpis</button></a>
+{% endblock %}
