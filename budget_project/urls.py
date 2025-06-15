@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import path
 from budget import views
+from reporting import views as reporting_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -9,7 +10,6 @@ urlpatterns = [
 
     # 📊 Wykres wydatków
     path('report/chart/', reporting_views.expenses_chart_view, name='chart'),
-
 
     # 📧 Wysyłanie raportu e-mailem
     path('report/email/', reporting_views.send_report_email, name='send_email'),
