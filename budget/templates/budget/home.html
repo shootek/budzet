@@ -57,7 +57,34 @@
         <p><strong>Przychody:</strong> {{ total_income }} zł</p>
         <p><strong>Wydatki:</strong> {{ total_expense }} zł</p>
         <p><strong>Saldo:</strong> {{ balance }} zł</p>
-
+        <h2>Wykres wydatków miesięcznych</h2>
+<canvas id="expensesChart" width="400" height="200"></canvas>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    fetch("{% url 'chart' %}")
+        .then(response => response.json())
+        .then(data => {
+            const ctx = document.getElementById('expensesChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.labels,
+                    datasets: [{
+                        label: 'Wydatki [zł]',
+                        data: data.values,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+</script>
         <h2>Wpisy</h2>
         
         <a href="{% url 'add_entry' %}">Dodaj nowy wpis</a>
