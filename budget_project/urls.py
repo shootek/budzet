@@ -10,8 +10,6 @@ urlpatterns = [
     # 📊 Wykres wydatków
     path('report/chart/', reporting_views.expenses_chart_view, name='chart'),
 
-    # 📄 Generowanie PDF
-    path('report/pdf/', reporting_views.generate_pdf_view, name='pdf'),
 
     # 📧 Wysyłanie raportu e-mailem
     path('report/email/', reporting_views.send_report_email, name='send_email'),
