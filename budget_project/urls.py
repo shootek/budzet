@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from budget import views  # Twoje istniejące widoki
-from reporting import views as reporting_views
+from budget import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
