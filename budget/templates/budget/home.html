@@ -59,19 +59,7 @@
         <p><strong>Saldo:</strong> {{ balance }} zł</p>
 
         <h2>Wpisy</h2>
-        <h2>Raporty</h2>
-
-<div class="report-actions" style="margin-bottom: 20px;">
-    <a href="{% url 'chart' %}" target="_blank">📊 Zobacz wykres wydatków</a><br>
-    <a href="{% url 'pdf' %}" target="_blank">📄 Pobierz raport PDF</a><br>
-
-    <form method="post" action="{% url 'send_email' %}" style="margin-top: 10px;">
-        {% csrf_token %}
-        <label for="email">✉️ Wyślij raport PDF na e-mail:</label>
-        <input type="email" name="email" placeholder="adres@example.com" required>
-        <button type="submit">Wyślij</button>
-    </form>
-</div>
+        
         <a href="{% url 'add_entry' %}">Dodaj nowy wpis</a>
 
         <table>
