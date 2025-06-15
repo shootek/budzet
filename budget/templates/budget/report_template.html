@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Raport Wydatków</title>
+    <style>
+        body { font-family: DejaVu Sans, sans-serif; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h2>Raport Wydatków</h2>
+    <p>Łączna kwota: {{ total }} PLN</p>
+    <table>
+        <tr>
+            <th>Data</th>
+            <th>Kategoria</th>
+            <th>Kwota</th>
+            <th>Opis</th>
+        </tr>
+        {% for e in expenses %}
+        <tr>
+            <td>{{ e.date }}</td>
+            <td>{{ e.category.name }}</td>
+            <td>{{ e.amount }}</td>
+            <td>{{ e.description }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
