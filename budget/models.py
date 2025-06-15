@@ -17,6 +17,7 @@ class Entry(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     date = models.DateField()
     description = models.TextField(blank=True)
+    receipt = models.FileField(upload_to='receipts/', blank=True, null=True)
 
     def __str__(self):
         return f"{self.get_type_display()} - {self.amount} zł"

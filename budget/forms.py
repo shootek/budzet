@@ -7,14 +7,14 @@ class EntryForm(forms.ModelForm):
 
     class Meta:
         model = Entry
-        fields = ['type', 'amount', 'category', 'date', 'description', 'captcha']
+        fields = ['type', 'amount', 'category', 'date', 'description', 'receipt']  
         labels = {
             'type': 'Typ',
             'amount': 'Kwota',
             'category': 'Kategoria',
             'date': 'Data',
             'description': 'Opis',
-            'captcha': 'Zabezpieczenie (Captcha)',
+            'receipt': 'Paragon (plik)', 
         }
         widgets = {
             'date': forms.DateInput(attrs={'type': 'date'}),

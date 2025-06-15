@@ -61,7 +61,7 @@
 <canvas id="expensesChart" width="400" height="200"></canvas>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    fetch("{% url 'chart' %}")
+    fetch("{% url 'chart_data' %}")
         .then(response => response.json())
         .then(data => {
             const ctx = document.getElementById('expensesChart').getContext('2d');
@@ -69,13 +69,25 @@
                 type: 'bar',
                 data: {
                     labels: data.labels,
-                    datasets: [{
-                        label: 'Wydatki [zł]',
-                        data: data.values,
-                        borderWidth: 1
-                    }]
+                    datasets: [
+                        {
+                            label: 'Przychody [zł]',
+                            data: data.incomes,
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Wydatki [zł]',
+                            data: data.expenses,
+                            backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1
+                        }
+                    ]
                 },
                 options: {
+                    responsive: true,
                     scales: {
                         y: {
                             beginAtZero: true
@@ -107,10 +119,17 @@
                         <td>{{ entry.amount }} zł</td>
                         <td>{{ entry.category.name }}</td>
                         <td>{{ entry.description }}</td>
+                        <td>
+                            {% if entry.receipt %}
+                                <a href="{{ entry.receipt.url }}" target="_blank">Zobacz</a>
+                            {% else %}
+                                —
+                        {% endif %}
+            </td>
                     </tr>
                 {% empty %}
                     <tr>
-                        <td colspan="5">Brak wpisów do wyświetlenia.</td>
+                        <td colspan="6">Brak wpisów do wyświetlenia.</td>
                     </tr>
                 {% endfor %}
             </tbody>

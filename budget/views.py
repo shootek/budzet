@@ -5,7 +5,7 @@ from django.db.models import Sum
 
 def add_entry(request):
     if request.method == 'POST':
-        form = EntryForm(request.POST)
+        form = EntryForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('home')
